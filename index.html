@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME 試作</title>
+    <style>
+        /* 1280px以下の画面 */
+        @media (max-width: 1280px){
+            body{
+            width: 1200px;
+            background-image: url(image_folder/kumo.png);
+            background-color: rgba(255,255, 255, 0.5);
+            }
+            .conteiner{
+                
+                height:500px;
+                
+
+            }
+            .bg{
+                width: 1200px;
+                height: 550px;
+            
+            }
+            .main{
+                
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .item{
+                flex:1;
+            }
+            .header{
+                width: 100vw;
+                height: 80px;
+                margin-left: -10px;
+                margin-top:-10px;
+                background-image: url(../../../public/image_folder/kabe.jpg);
+                background-repeat: repeat-x;
+                
+            }
+            .footer{
+                width: 100vw;
+                height: 80px;
+                margin-left: -10px;
+                margin-bottom: -10px;
+                background-image: url(../../../public/image_folder/kabe.jpg);
+                background-repeat: repeat-x;
+            }
+            .frame{
+            
+                display: flex;
+                margin-left: 50px;
+
+            }
+            #mapFrame{
+                width: 2000px;
+                height: 2000px;
+                margin-left: -620px;
+                margin-top: -1660px;
+            
+            }
+            .hide{
+                width: 700px;
+                height: 300px;
+                margin-top: 10px;
+                border-radius:20px;
+                overflow: hidden;
+
+            }
+
+
+        }
+            
+        /* 1280px以上の画面 */
+        body{
+            width: 100vw;
+            background-image: url(image_folder/kumo.png);
+            background-color: rgba(255,255, 255, 0.5);
+
+           
+        }
+        .conteiner{
+            
+            height:950px;
+            
+           
+            
+
+        }
+        .bg{
+            width: 100%;
+            height: 100%;
+           
+        }
+        .main{
+            
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .item{
+            flex:1;
+        }
+        .header{
+            width: 100vw;
+            height: 80px;
+            margin-left: -10px;
+            margin-top:-10px;
+            background-image: url(image_folder/kabe.jpg);
+            background-repeat: repeat-x;
+            border-bottom: 3px solid;
+        }
+        .footer{
+            width: 100vw;
+            height: 80px;
+            margin-left: -10px;
+            margin-bottom: -10px;
+            background-image: url(image_folder/kabe.jpg);
+            background-repeat: repeat-x;
+        }
+        .frame{
+           
+            display: flex;
+            margin-left: 50px;
+
+        }
+        #mapFrame{
+            width: 2000px;
+            height: 2000px;
+            margin-left: -459px;
+            margin-top: -1400px;
+
+          
+        }
+        .hide{
+            width: 1100px;
+            height: 600px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius:20px;
+            overflow: hidden;
+        }
+        .text{
+            width: 900px;
+            height: 150px;
+            margin: 0 auto;
+            margin-top:10px;
+            background-color: black;
+            display: flex;
+        }
+        #navi{   
+            width:400px;
+            height: 150px;
+            color: white;
+            font-size: 16px;
+            border: 2px white;
+            margin:0 auto;
+            margin-top: 5px;
+            
+            
+        }
+        .menu{
+            border:2px white;
+        }
+        .main-content{
+            display: flex;
+            flex-direction: column;
+        }
+        .btn{
+            padding: 5px;
+            margin: 5px 5px 0 0 ;
+            margin-left:-20px;
+            background-color: black;
+            color: white;
+            width: 200px;
+        }
+        #btn{
+            color: white;
+            font-size: 12px;
+            background-color: black;
+            position: relative;
+            width: 50px;
+            height: 30px;
+            top: 100px;
+            right: 20px;
+            
+        }
+        .visi{
+            visibility: hidden;
+            
+
+        }
+
+
+    </style>
+ 
+</head>
+<body>
+    <div class="conteiner">
+        <div class="bg">
+         <div class="main">
+            <div class=" header">
+
+            </div>
+            
+            <div class=" item frame">
+                <div class="item sub-frame">
+                    <p id="deback"></p>
+                </div >
+                    <div class="main-content">
+                        <div class=" hide">
+                            <iframe src="start.html" id="mapFrame" scrolling="no"></iframe>
+                        </div>
+                        <div class="text" id="text">
+                            <ul class="menu">
+                                <li><button class="btn" id="status" onclick="myStatus()">ステータス</button></li>
+                                <li><button class="btn" id="item" onclick="myitem()">アイテム</button></li>
+                                <li><button class="btn" id="maping" onclick="about()">操作説明</button></li>
+                            </ul>
+                            <p id="navi" name="navi"> </p>
+                            <button class="visi" id="btn" onclick="prolo1()">次へ</button>
+                        </div>
+                    </div>
+                <div class="item sub-frame">
+
+                </div>
+
+            </div>
+
+            <div class=" footer">
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+    <script>
+        let ms = document.getElementById("mapFrame")
+        let navi = document.getElementById("navi")
+        var nowTime;
+        window.onload = () =>{
+            makeTime()
+        }
+        function makeTime(){
+            nowTime = new Date();
+        }
+    
+        
+
+    
+        let X = -459
+        let Y = -1400
+
+        function e(e){
+         let item = document.getElementById("mapFrame").contentWindow.charaData();
+
+            switch(e){
+            case 0: navi.innerHTML = "海が広がっていて通れない" 
+            break;
+
+            case 1: navi.innerHTML = "穴が空いている。別の道を行こう"
+            break;
+
+            case 2: navi.innerHTML = "草がある。かゆい" 
+            break;
+
+            case 3: navi.innerHTML = "歩きやすい道だ" 
+            break;
+
+            case 4: navi.innerHTML = "海が広がっていて通れない" 
+            break;
+
+            case 5: navi.innerHTML = "近くに何かを感じる" 
+            break;
+
+            case 6: navi.innerHTML ="何かを拾った…？ポケットの中に入れた。"
+            break;
+
+            case 7: navi.innerHTML ="何かを拾った…？ポケットの中に入れた。"
+            break; 
+            case 100: if(item.item[2] != "探し物")
+            {
+                navi.innerHTML ="みりあ姫"+"<br>"+"「私の大切な物をはやく探してきてください。"+"<br>"+"見つけられるまで家には帰れないと思いなさい。」"
+            }else{
+                navi.innerHTML ="みりあ姫"+"<br>"+"やっと見つけられたのね！よくやったわ！" + "<br>" + "城で褒美を与えます！船に乗りなさい！"
+                setTimeout(last(),5*1000)
+            }     
+            }
+            return e
+        }
+        function action(a){
+            switch(a){
+                case 10 : navi.innerHTML = "探し物を手に入れた！"
+                break;
+                case 100 : navi.innerHTML = "お腹が減ってきた……。"
+                break;
+                case 101 : navi.innerHTML = "そろそろ死ぬ……"
+                break;
+            }
+            
+        }
+
+
+
+        //デバック用数値画面
+     
+        // function check(){  
+        //     document.getElementById("deback").innerHTML = "X:"+ X +"<br>"+"Y:" + Y
+
+        // }    
+
+        //カメラワーク
+        function camera(moveX,moveY){
+            
+            if(moveX != 0){
+                X += moveX
+                if(X > -959 && X < 41 ){
+                    ms.style.marginLeft =`${X}px`
+                    //check()
+                }else{
+                    X -= moveX
+                }
+            }else{
+                Y += moveY
+                if(Y > -1450 && Y < 50){
+                    ms.style.marginTop = `${Y}px`
+                    //check()
+                }else{
+                    Y -= moveY
+                }
+            }    
+        }
+        function myStatus(){
+            let chara = document.getElementById("mapFrame").contentWindow.charaData();
+            navi.innerHTML ="名前:" + chara.name + "<br>" + "年齢" + chara.age + "<br>" + "空腹度" + chara.hungry + "<br>"
+        }
+        
+        function myitem(){
+            let chara = document.getElementById("mapFrame").contentWindow.charaData();
+            navi.innerHTML ="ポケットの中身-----------------" + "<br>" + chara.item[0] +"<br>"+ chara.item[1] +"<br>"+ chara.item[2] +"<br>"
+             
+            
+
+        }
+        function about(){
+            navi.innerHTML = "操作説明-----------------------" + "<br>" + "キーボードのi(上),h(左),j(下),k(右)キーを使って操作します" + "<br>" + "探し物を見つけて、お姫様に渡せばクリアです。" + "<br>" + "黒い画面にイベントが表示されるのでよく見ておこう！"
+        }
+       
+        function Time(){
+            let thisTime = nowTime.getTime()
+           return thisTime
+       }
+       
+       function last(){
+           ms.src = "end.html"
+
+       }
+
+       function start(){
+           ms.src = "map.html"
+       }
+
+       function mid(){
+           ms.src = "prolorg.html"
+       }
+
+       function prolo(){
+           let btn = document.getElementById("btn")
+           let navi = document.getElementById("navi")
+           navi.innerHTML ="我々は姫様が旅行で訪れた島で、落としてしまった大切な物を探しにきている。"   
+       
+           btn.classList.remove("visi")
+
+       }
+
+       function prolo1(){
+            let btn = document.getElementById("btn")
+            if(btn.inner != "開始"){
+                navi.innerHTML ="姫様のご機嫌を取り戻すために早く探し出そう！。それなりに広い島だから時間がかかって空腹に耐えられるかが不安だ。"
+                btn.inner = "開始"  
+            }else{
+                navi.innerHTML = "探索開始だ！" + "<br>" +"※キャラクターを一度クリックしてから操作を開始してね！"
+                start()
+                btn.classList.add("visi")
+            }
+         
+       }
+
+        
+
+    </script>
+</body>
+</html>

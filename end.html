@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        @media(max-width:1280){
+            .main{
+            width: 500px;
+            height: 500px;
+            position: relative;
+            left: 550px;
+            top: 100px;
+            color:white;
+            font-size: 48px;
+        }
+        
+
+        }
+        .main{
+            width: 500px;
+            height: 500px;
+            position: relative;
+            left: 550px;
+            top: 100px;
+            color:white;
+            font-size: 48px;
+        }
+        
+
+    </style>
+
+</head>
+<body>
+    <div class="main">
+    <h1>Conglatulation!!!</h1>
+    <p id="time"aaaa></p>
+   </div>
+    <script>
+        var seconds
+        var minutes
+        function lastTime(){
+            let date = new Date()
+            let endTime = date.getTime()
+            let startTime = window.parent.Time()
+             seconds = Math.floor((endTime - startTime)/1000)
+             minutes = Math.floor(seconds / 60)
+             
+            if(seconds < 10){
+                seconds = "0" + seconds
+                if(seconds > 60){
+                    seconds = 0
+                }
+            } 
+
+            if(minutes < 10){
+                minutes = "0" + minutes
+                if(minutes > 60){
+                    minutes = 0
+                }
+            }
+        }
+    
+            
+        lastTime()
+        document.getElementById("time").innerHTML= "CLEAR TIME =>" +""+ minutes + ":" + seconds
+
+    </script>
+</body>
+
+</html>
